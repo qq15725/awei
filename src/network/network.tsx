@@ -1,4 +1,4 @@
-import Message from '../message'
+import MessageBox from '../message-box'
 
 export default class Network extends godot.Node
 {
@@ -9,7 +9,6 @@ export default class Network extends godot.Node
   }
 
   message(text: string) {
-    const message = this.get_node('/root/Game/UI/UIWrapper/Message') as Message
-    message?.push(text)
+    MessageBox.instance(this)?.push(text)
   }
 }
