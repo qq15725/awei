@@ -5,7 +5,7 @@
     "watch": "tsc -w -p .",
     "build": "tsc -p .",
     "mac": "./bin/godot --path ./",
-    "win": "./bin/godot.exe --path ./"
+    "win": ".\\bin\\godot.exe --path .\\"
 	},
 	"devDependencies": {
 		"@qq15725/eslint-config": "^1.1.0",
