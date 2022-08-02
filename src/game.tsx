@@ -1,7 +1,7 @@
 import { gnode } from './utils'
 import Network from './network'
-import Message from './message'
 import MainMenu from './main-menu'
+import MessageBox from './message-box'
 
 export default class Game extends godot.Node
 {
@@ -24,7 +24,7 @@ export default class Game extends godot.Node
           // 主菜单
           new MainMenu(),
           // 消息框
-          new Message(),
+          new MessageBox(),
         ]),
       ])
     )

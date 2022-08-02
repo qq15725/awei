@@ -42,41 +42,26 @@ export default class MainMenu extends godot.Control
   }
 
   genServer() {
-    const button = gnode(godot.Button, {
+    return gnode(godot.Button, {
       text: '创建服务器',
       rect_min_size: new godot.Vector2(100, 40),
+      on_pressed: () => this.server.dialog.popup()
     })
-    button.connect('pressed', this, 'onPressedServer')
-    return button
-  }
-
-  onPressedServer() {
-    this.server.dialog.popup()
   }
 
   genClient() {
-    const button = gnode(godot.Button, {
+    return gnode(godot.Button, {
       text: '连接服务器',
       rect_min_size: new godot.Vector2(100, 40),
-    }, [])
-    button.connect('pressed', this, 'onPressedClient')
-    return button
-  }
-
-  onPressedClient() {
-    this.client.dialog.popup()
+      on_pressed: () => this.client.dialog.popup()
+    })
   }
 
   genExit() {
-    const button = gnode(godot.Button, {
+    return gnode(godot.Button, {
       text: '退出游戏',
       rect_min_size: new godot.Vector2(100, 40),
-    }, [])
-    button.connect('pressed', this, 'onPressedExit')
-    return button
-  }
-
-  onPressedExit() {
-    this.get_tree().quit()
+      on_pressed: () => this.get_tree().quit()
+    })
   }
 }

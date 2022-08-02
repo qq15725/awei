@@ -1,4 +1,4 @@
-import type Message from './message'
+import MessageBox from './message-box'
 
 export default class Network extends godot.Node
 {
@@ -12,13 +12,11 @@ export default class Network extends godot.Node
   }
 
   onPlayerConnected(id: string) {
-    const message = this.get_node('/root/Game/UI/UIWrapper/Message') as Message
-    message?.push(`玩家${ id }: 已连接`)
+    MessageBox.instance(this)?.push(`玩家${ id }: 已连接`)
   }
 
   onPlayerDisconnected(id: string) {
-    const message = this.get_node('/root/Game/UI/UIWrapper/Message') as Message
-    message?.push(`玩家${ id }: 已退出`)
+    MessageBox.instance(this)?.push(`玩家${ id }: 已退出`)
   }
 
   onConnectedOk() {
