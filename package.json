@@ -1,7 +1,8 @@
 {
   "name": "awei",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
     "watch": "tsc -w -p .",
     "build": "tsc -p .",
     "mac": "./bin/godot --path ./",
