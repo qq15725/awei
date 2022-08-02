@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [gui]
 
-theme/custom_font="res://fonts/cn-font.tres"
+theme/custom_font="res://font.tres"
 
 [rendering]
 
