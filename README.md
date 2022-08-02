@@ -23,3 +23,7 @@ windows 下运行 godot
 ```sh
 pnpm win
 ```
+
+## 支持 JSX 的 Godot 可执行文件下载
+
+[https://github.com/qq15725/ECMAScript](https://github.com/qq15725/ECMAScript)
