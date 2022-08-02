@@ -1,4 +1,4 @@
-import { node } from './utils'
+import { gnode } from './utils'
 import Server from './network/server'
 import Client from './network/client'
 
@@ -13,7 +13,7 @@ export default class MainMenu extends godot.Control
     this.server = new Server()
     this.client = new Client()
     this.add_child(
-      node(godot.VBoxContainer, {
+      gnode(godot.VBoxContainer, {
         anchor_left: 0.5,
         anchor_right: 0.5,
         anchor_top: 0.5,
@@ -33,7 +33,7 @@ export default class MainMenu extends godot.Control
       this.genExit()
     ]
     return menuItems.map(menuItem => {
-      return node(godot.HBoxContainer, {
+      return gnode(godot.HBoxContainer, {
         alignment: godot.BoxContainer.ALIGN_CENTER,
       }, [
         menuItem,
@@ -42,7 +42,7 @@ export default class MainMenu extends godot.Control
   }
 
   genServer() {
-    const button = node(godot.Button, {
+    const button = gnode(godot.Button, {
       text: '创建服务器',
       rect_min_size: new godot.Vector2(100, 40),
     })
@@ -55,7 +55,7 @@ export default class MainMenu extends godot.Control
   }
 
   genClient() {
-    const button = node(godot.Button, {
+    const button = gnode(godot.Button, {
       text: '连接服务器',
       rect_min_size: new godot.Vector2(100, 40),
     }, [])
@@ -68,7 +68,7 @@ export default class MainMenu extends godot.Control
   }
 
   genExit() {
-    const button = node(godot.Button, {
+    const button = gnode(godot.Button, {
       text: '退出游戏',
       rect_min_size: new godot.Vector2(100, 40),
     }, [])

@@ -1,4 +1,4 @@
-import { node } from '../utils'
+import { gnode } from '../utils'
 
 // class AweiContainer extends godot.CenterContainer {
 //   constructor() {
@@ -19,7 +19,7 @@ export default class Card extends godot.Container
   constructor() {
     super()
     this.rect_min_size = new godot.Vector2(52, 52)
-    this.add_child(node(godot.TextureRect, {
+    this.add_child(gnode(godot.TextureRect, {
       texture: godot.load("res://icon.png") as godot.Texture,
       rect_min_size: this.rect_min_size,
       expand: true,

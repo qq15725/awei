@@ -1,4 +1,4 @@
-import { node } from '../utils'
+import { gnode } from '../utils'
 import Network from './network'
 
 export default class Client extends Network
@@ -8,7 +8,7 @@ export default class Client extends Network
 
   _ready() {
     super._ready()
-    this.address = node(godot.LineEdit, {
+    this.address = gnode(godot.LineEdit, {
       text: 'localhost:53333',
       size_flags_horizontal: godot.Control.SIZE_EXPAND_FILL,
     })
@@ -17,20 +17,20 @@ export default class Client extends Network
   }
 
   genDialog() {
-    return node(godot.AcceptDialog, {
+    return gnode(godot.AcceptDialog, {
       window_title: '连接服务器',
       anchor_left: 0.5,
       anchor_top: 0.5,
       rect_min_size: new godot.Vector2(160, 100),
       on_confirmed: () => this.createClient(),
     }, [
-      node(godot.VBoxContainer, {
+      gnode(godot.VBoxContainer, {
         alignment: godot.BoxContainer.ALIGN_CENTER,
       }, [
-        node(godot.HBoxContainer, {
+        gnode(godot.HBoxContainer, {
           alignment: godot.BoxContainer.ALIGN_CENTER,
         }, [
-          node(godot.Label, {
+          gnode(godot.Label, {
             text: '地址',
           }),
           this.address,
