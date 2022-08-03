@@ -1,4 +1,4 @@
-import { MessageBox } from './message-box'
+import { Game } from '../game'
 
 export class NetworkManager extends godot.Node {
   _ready() {
@@ -11,11 +11,11 @@ export class NetworkManager extends godot.Node {
   }
 
   onPlayerConnected(id: string) {
-    MessageBox.instance(this)?.push(`玩家${ id }: 已连接`)
+    Game.messageBox().push(`玩家${ id }: 已连接`)
   }
 
   onPlayerDisconnected(id: string) {
-    MessageBox.instance(this)?.push(`玩家${ id }: 已退出`)
+    Game.messageBox().push(`玩家${ id }: 已退出`)
   }
 
   onConnectedOk() {

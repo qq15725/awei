@@ -1,8 +1,12 @@
 import { gnode } from './utils'
+import { Game } from './game'
 import { MainMenu, MessageBox, NetworkManager } from './components'
 
 export default class Root extends godot.Node {
   _ready() {
+    // 工具类
+    this.add_child(new Game())
+
     // 网络管理
     this.add_child(new NetworkManager())
 

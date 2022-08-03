@@ -4,10 +4,6 @@ export class MessageBox extends godot.Control {
   public messages: godot.VBoxContainer
   public input: godot.LineEdit
 
-  public static instance(self: godot.Node): MessageBox {
-    return self.get_node('/root/Root/UI/UIWrapper/MessageBox') as MessageBox
-  }
-
   public _ready() {
     this.name = 'MessageBox'
     this.anchor_top = 1

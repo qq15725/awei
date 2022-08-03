@@ -1,4 +1,4 @@
-import { MessageBox } from './message-box'
+import { Game } from '../game'
 
 export class NetworkBase extends godot.Node {
   peer: godot.NetworkedMultiplayerENet
@@ -8,6 +8,6 @@ export class NetworkBase extends godot.Node {
   }
 
   message(text: string) {
-    MessageBox.instance(this)?.push(text)
+    Game.messageBox().push(text)
   }
 }

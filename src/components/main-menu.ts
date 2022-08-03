@@ -1,4 +1,5 @@
 import { gnode, vector2 } from '../utils'
+import { Game } from '../game'
 import { NetworkServer } from './network-server'
 import { NetworkClient } from './network-client'
 
@@ -20,7 +21,7 @@ export class MainMenu extends godot.Control {
           gnode('Button', {
             text: '开始游戏',
             rect_min_size: vector2(100, 40),
-            on_pressed: () => this.get_tree().change_scene('res://scenes/world.tscn'),
+            on_pressed: () => Game.gotoWorldScene(),
           }),
           gnode('Button', {
             text: '创建服务器',
