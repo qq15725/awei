@@ -1,7 +1,6 @@
 import { gnode, remote_sync } from './utils'
 
-export default class MessageBox extends godot.Control
-{
+export default class MessageBox extends godot.Control {
   public messages: godot.VBoxContainer
   public input: godot.LineEdit
 
@@ -17,26 +16,26 @@ export default class MessageBox extends godot.Control
     this.messages = this.genMessages()
     this.input = this.genInput()
     this.add_child(
-      gnode(godot.VBoxContainer, [
-        gnode(godot.ScrollContainer, {
+      gnode('VBoxContainer', [
+        gnode('ScrollContainer', {
           rect_min_size: new godot.Vector2(500, 200),
         }, [
-          this.messages
+          this.messages,
         ]),
         this.input,
-      ])
+      ]),
     )
   }
 
   public genMessages() {
-    return gnode(godot.VBoxContainer, {
+    return gnode('VBoxContainer', {
       size_flags_horizontal: godot.Control.SIZE_EXPAND_FILL,
       size_flags_vertical: godot.Control.SIZE_EXPAND_FILL,
     })
   }
 
   public genInput() {
-    const input = gnode(godot.LineEdit)
+    const input = gnode('LineEdit')
     input.connect('text_entered', (text: string) => {
       const id = this.get_tree().get_network_unique_id()
       this.push(`玩家${ id }: ${ text }`)
@@ -52,9 +51,9 @@ export default class MessageBox extends godot.Control
   @remote_sync
   protected _push(text: string) {
     this.messages.add_child(
-      gnode(godot.Label, {
+      gnode('Label', {
         text,
-      })
+      }),
     )
   }
 }

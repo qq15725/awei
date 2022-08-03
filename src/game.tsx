@@ -3,8 +3,7 @@ import Network from './network'
 import MainMenu from './main-menu'
 import MessageBox from './message-box'
 
-export default class Game extends godot.Node
-{
+export default class Game extends godot.Node {
   _ready() {
     this.name = 'Game'
 
@@ -13,10 +12,10 @@ export default class Game extends godot.Node
 
     // UI
     this.add_child(
-      gnode(godot.CanvasLayer, {
-        name: 'UI'
+      gnode('CanvasLayer', {
+        name: 'UI',
       }, [
-        gnode(godot.Control, {
+        gnode('Control', {
           name: 'UIWrapper',
           anchor_right: 1,
           anchor_bottom: 1,
@@ -26,7 +25,7 @@ export default class Game extends godot.Node
           // 消息框
           new MessageBox(),
         ]),
-      ])
+      ]),
     )
 
     if (godot.OS.has_feature('Server')) {

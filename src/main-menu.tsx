@@ -2,8 +2,7 @@ import { gnode } from './utils'
 import Server from './network/server'
 import Client from './network/client'
 
-export default class MainMenu extends godot.Control
-{
+export default class MainMenu extends godot.Control {
   server: Server
   client: Client
 
@@ -12,8 +11,11 @@ export default class MainMenu extends godot.Control
     this.anchor_bottom = 1
     this.server = new Server()
     this.client = new Client()
+
+    this.add_child(gnode('VBoxContainer'))
+
     this.add_child(
-      gnode(godot.VBoxContainer, {
+      gnode('VBoxContainer', {
         anchor_left: 0.5,
         anchor_right: 0.5,
         anchor_top: 0.5,
@@ -22,7 +24,7 @@ export default class MainMenu extends godot.Control
         this.server,
         this.client,
         ...this.genMenuItems(),
-      ])
+      ]),
     )
   }
 
@@ -30,10 +32,10 @@ export default class MainMenu extends godot.Control
     const menuItems = [
       this.genServer(),
       this.genClient(),
-      this.genExit()
+      this.genExit(),
     ]
     return menuItems.map(menuItem => {
-      return gnode(godot.HBoxContainer, {
+      return gnode('HBoxContainer', {
         alignment: godot.BoxContainer.ALIGN_CENTER,
       }, [
         menuItem,
@@ -42,26 +44,26 @@ export default class MainMenu extends godot.Control
   }
 
   genServer() {
-    return gnode(godot.Button, {
+    return gnode('Button', {
       text: '创建服务器',
       rect_min_size: new godot.Vector2(100, 40),
-      on_pressed: () => this.server.dialog.popup()
+      on_pressed: () => this.server.dialog.popup(),
     })
   }
 
   genClient() {
-    return gnode(godot.Button, {
+    return gnode('Button', {
       text: '连接服务器',
       rect_min_size: new godot.Vector2(100, 40),
-      on_pressed: () => this.client.dialog.popup()
+      on_pressed: () => this.client.dialog.popup(),
     })
   }
 
   genExit() {
-    return gnode(godot.Button, {
+    return gnode('Button', {
       text: '退出游戏',
       rect_min_size: new godot.Vector2(100, 40),
-      on_pressed: () => this.get_tree().quit()
+      on_pressed: () => this.get_tree().quit(),
     })
   }
 }

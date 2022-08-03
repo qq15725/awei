@@ -1,7 +1,6 @@
 import Card from './card'
 
-export default class Shop extends godot.HBoxContainer
-{
+export default class Shop extends godot.HBoxContainer {
   constructor() {
     super()
     // this.size_flags_horizontal = 3

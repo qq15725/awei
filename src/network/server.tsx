@@ -1,15 +1,14 @@
 import { gnode } from '../utils'
 import Network from './network'
 
-export default class Server extends Network
-{
+export default class Server extends Network {
   port: godot.LineEdit
 
   dialog: godot.AcceptDialog
 
   _ready() {
     super._ready()
-    this.port = gnode(godot.LineEdit, {
+    this.port = gnode('LineEdit', {
       text: '53333',
       size_flags_horizontal: godot.Control.SIZE_EXPAND_FILL,
     })
@@ -18,25 +17,25 @@ export default class Server extends Network
   }
 
   genDialog() {
-    return gnode(godot.AcceptDialog, {
+    return gnode('AcceptDialog', {
       window_title: '创建服务器',
       anchor_left: 0.5,
       anchor_top: 0.5,
       rect_min_size: new godot.Vector2(160, 100),
       on_confirmed: () => this.createServer(),
     }, [
-      gnode(godot.VBoxContainer, {
+      gnode('VBoxContainer', {
         alignment: godot.BoxContainer.ALIGN_CENTER,
       }, [
-        gnode(godot.HBoxContainer, {
+        gnode('HBoxContainer', {
           alignment: godot.BoxContainer.ALIGN_CENTER,
         }, [
-          gnode(godot.Label, {
+          gnode('Label', {
             text: '端口',
           }),
           this.port,
-        ])
-      ])
+        ]),
+      ]),
     ])
   }
 

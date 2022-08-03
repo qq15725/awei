@@ -14,13 +14,12 @@ import { gnode } from '../utils'
 //   }
 // }
 
-export default class Card extends godot.Container
-{
+export default class Card extends godot.Container {
   constructor() {
     super()
     this.rect_min_size = new godot.Vector2(52, 52)
-    this.add_child(gnode(godot.TextureRect, {
-      texture: godot.load("res://icon.png") as godot.Texture,
+    this.add_child(gnode('TextureRect', {
+      texture: godot.load('res://icon.png') as godot.Texture,
       rect_min_size: this.rect_min_size,
       expand: true,
     }, []))

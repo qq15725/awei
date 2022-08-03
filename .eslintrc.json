@@ -1,3 +1,6 @@
 {
-  "extends": "@qq15725"
+  "extends": "@qq15725",
+  "ignorePatterns": [
+    "./types/godot.d.ts"
+  ]
 }
