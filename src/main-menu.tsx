@@ -11,9 +11,6 @@ export default class MainMenu extends godot.Control {
     this.anchor_bottom = 1
     this.server = new Server()
     this.client = new Client()
-
-    this.add_child(gnode('VBoxContainer'))
-
     this.add_child(
       gnode('VBoxContainer', {
         anchor_left: 0.5,
