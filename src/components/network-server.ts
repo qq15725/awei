@@ -1,4 +1,4 @@
-import { gnode } from '../utils'
+import { gnode, vector2 } from '../utils'
 import { NetworkBase } from './network-base'
 
 export class NetworkServer extends NetworkBase {
@@ -20,7 +20,7 @@ export class NetworkServer extends NetworkBase {
       window_title: '创建服务器',
       anchor_left: 0.5,
       anchor_top: 0.5,
-      rect_min_size: new godot.Vector2(160, 100),
+      rect_min_size: vector2(160, 100),
       on_confirmed: () => this.createServer(),
     }, [
       gnode('VBoxContainer', {

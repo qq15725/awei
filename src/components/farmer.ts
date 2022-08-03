@@ -1,8 +1,10 @@
+import { vector2 } from '../utils'
+
 export class Farmer extends godot.TextureRect {
   constructor() {
     super()
     this.texture = godot.load('res://icon.png') as godot.Texture
-    this.rect_min_size = new godot.Vector2(52, 52)
+    this.rect_min_size = vector2(52, 52)
     this.expand = true
   }
 
