@@ -1,6 +1,6 @@
-import MessageBox from './message-box'
+import { MessageBox } from './message-box'
 
-export default class Network extends godot.Node {
+export class NetworkManager extends godot.Node {
   _ready() {
     const tree = this.get_tree()
     tree.connect('network_peer_connected', this, 'onPlayerConnected')

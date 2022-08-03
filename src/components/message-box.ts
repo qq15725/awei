@@ -1,11 +1,11 @@
-import { gnode, remote_sync } from './utils'
+import { gnode, remote_sync } from '../utils'
 
-export default class MessageBox extends godot.Control {
+export class MessageBox extends godot.Control {
   public messages: godot.VBoxContainer
   public input: godot.LineEdit
 
   public static instance(self: godot.Node): MessageBox {
-    return self.get_node('/root/Game/UI/UIWrapper/MessageBox') as MessageBox
+    return self.get_node('/root/Root/UI/UIWrapper/MessageBox') as MessageBox
   }
 
   public _ready() {

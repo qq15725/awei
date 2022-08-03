@@ -1,14 +1,14 @@
 import { gnode } from '../utils'
-import Network from './network'
+import { NetworkBase } from './network-base'
 
-export default class Client extends Network {
-  address: godot.LineEdit
+export class NetworkServer extends NetworkBase {
+  port: godot.LineEdit
   dialog: godot.AcceptDialog
 
   _ready() {
     super._ready()
-    this.address = gnode('LineEdit', {
-      text: 'localhost:53333',
+    this.port = gnode('LineEdit', {
+      text: '53333',
       size_flags_horizontal: godot.Control.SIZE_EXPAND_FILL,
     })
     this.dialog = this.genDialog()
@@ -17,11 +17,11 @@ export default class Client extends Network {
 
   genDialog() {
     return gnode('AcceptDialog', {
-      window_title: '连接服务器',
+      window_title: '创建服务器',
       anchor_left: 0.5,
       anchor_top: 0.5,
       rect_min_size: new godot.Vector2(160, 100),
-      on_confirmed: () => this.createClient(),
+      on_confirmed: () => this.createServer(),
     }, [
       gnode('VBoxContainer', {
         alignment: godot.BoxContainer.ALIGN_CENTER,
@@ -30,17 +30,18 @@ export default class Client extends Network {
           alignment: godot.BoxContainer.ALIGN_CENTER,
         }, [
           gnode('Label', {
-            text: '地址',
+            text: '端口',
           }),
-          this.address,
+          this.port,
         ]),
       ]),
     ])
   }
 
-  createClient() {
-    const [address, port] = this.address.text.split(':')
-    this.peer.create_client(address, Number(port))
+  createServer() {
+    const port = Number(this.port.text)
+    this.peer.create_server(port)
     this.get_tree().network_peer = this.peer
+    this.message(`服务器运行在 localhost:${ port }`)
   }
 }

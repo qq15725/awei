@@ -1,20 +1,14 @@
 import { gnode } from './utils'
-import Network from './network'
-import MainMenu from './main-menu'
-import MessageBox from './message-box'
+import { MainMenu, MessageBox, NetworkManager } from './components'
 
-export default class Game extends godot.Node {
+export default class Root extends godot.Node {
   _ready() {
-    this.name = 'Game'
-
-    // Services
-    this.add_child(new Network())
+    // 网络管理
+    this.add_child(new NetworkManager())
 
     // UI
     this.add_child(
-      gnode('CanvasLayer', {
-        name: 'UI',
-      }, [
+      gnode('CanvasLayer', { name: 'UI' }, [
         gnode('Control', {
           name: 'UIWrapper',
           anchor_right: 1,

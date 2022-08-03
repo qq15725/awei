@@ -1,6 +1,6 @@
-import MessageBox from '../message-box'
+import { MessageBox } from './message-box'
 
-export default class Network extends godot.Node {
+export class NetworkBase extends godot.Node {
   peer: godot.NetworkedMultiplayerENet
 
   _ready() {
