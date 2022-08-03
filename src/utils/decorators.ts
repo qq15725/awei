@@ -3,6 +3,7 @@
  * An ECMAScript object is created and attached automaticly when construct an instance from this class
  */
 export function gdclass<T extends godot.Object>(target: new() => T) {
+  // @ts-expect-error internal_class_id
   const id = gdclass.internal_class_id = gdclass.internal_class_id ? gdclass.internal_class_id + 1 : 1
   const class_name = `AnonymousECMAClass${ id }`
   godot.register_class(target, class_name)
@@ -36,7 +37,7 @@ export function signal(target: godot.Object | (new() => godot.Object), property:
 
 /**
  * Register property to godot class
- * @param value The default value of the property
+ * @param info The default value of the property
  */
 export function property<T extends godot.Object>(info: godot.PropertyInfo) {
   return function (target: T, property: string, descriptor?: any) {
@@ -70,7 +71,9 @@ export function onready<T extends godot.Node>(path: string | (new() => godot.Nod
 /**
  * Register the member as a node property
  * **Note: The value is null before current node is ready**
- * @param path The default path name of the node
+ * @param target The default path name of the node
+ * @param property
+ * @param descriptor
  */
 export function node<T extends godot.Node>(target: T, property: string, descriptor?: any) {
   const key = `$onready:${ property }`
