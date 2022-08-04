@@ -2,21 +2,16 @@ import { gnode, vector2 } from '../../utils'
 import { CardHeader } from './card-header'
 import { CardBackground } from './card-background'
 
-export class Card extends godot.Container {
+export class Card extends godot.KinematicBody2D {
   public title = ''
-  public width = 90
-  public height = 120
+  public grabbedOffset = vector2()
+  public canGrab = false
 
   public _ready() {
-    // styles
-    this.margin_top = 10
-    this.margin_bottom = 10
-    this.margin_left = 10
-    this.margin_right = 10
-    this.rect_min_size = vector2(this.width, this.height)
-
-    // elements
-    this.add_child(new CardBackground(this.rect_min_size))
+    this.input_pickable = true
+    this.collision_layer = 1
+    const size = vector2(90, 120)
+    this.add_child(new CardBackground(size))
     this.add_child(
       gnode('MarginContainer', {
         margin_top: 3,
@@ -24,16 +19,29 @@ export class Card extends godot.Container {
         margin_left: 3,
         margin_right: 3,
       }, [
-        new CardHeader(this.title, vector2(this.width - 6, 30)),
+        new CardHeader(this.title, vector2(size.x - 6, 30)),
       ]),
     )
   }
 
-  can_drop_data(_position: godot.Vector2, _data: any): boolean {
-    return true
+  public _input_event(_viewport: Object, event: godot.InputEvent, _shape_idx: number) {
+    // TODO
+    // eslint-disable-next-line no-console
+    console.log(event)
   }
 
-  drop_data(position: godot.Vector2, data: godot.Node) {
-    this.add_child(data)
+  public _input(event: godot.InputEvent) {
+    if (event instanceof godot.InputEventMouseButton) {
+      this.canGrab = (event as godot.InputEventMouseButton).pressed
+      // @ts-expect-error vector2
+      this.grabbedOffset = this.position - this.get_global_mouse_position()
+    }
+  }
+
+  public _process() {
+    if (godot.Input.is_mouse_button_pressed(godot.BUTTON_LEFT) && this.canGrab) {
+      // @ts-expect-error vector2
+      this.position = this.get_global_mouse_position() + this.grabbedOffset
+    }
   }
 }

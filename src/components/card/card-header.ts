@@ -24,8 +24,8 @@ export class CardHeader extends godot.Panel {
     style.set_bg_color(color('#f7e3af'))
     style.border_width_bottom = 3
     style.set_border_color(color('#000000'))
-    style.corner_radius_top_left = 10
-    style.corner_radius_top_right = 10
+    style.corner_radius_top_left = 3
+    style.corner_radius_top_right = 3
     return style
   }
 }

@@ -15,7 +15,7 @@ export class CardBackground extends godot.Panel {
     style.set_bg_color(color('#fbf2e0'))
     style.set_border_width_all(3)
     style.set_border_color(color('#000000'))
-    style.set_corner_radius_all(10)
+    style.set_corner_radius_all(3)
     return style
   }
 }
