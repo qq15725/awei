@@ -6,6 +6,7 @@ export type GNodes = {
   HBoxContainer: godot.HBoxContainer
   Label: godot.Label
   LineEdit: godot.LineEdit
+  MarginContainer: godot.MarginContainer
   Node: godot.Node
   ScrollContainer: godot.ScrollContainer
   TextureRect: godot.TextureRect
