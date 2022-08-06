@@ -2,12 +2,15 @@ export type GNodes = {
   AcceptDialog: godot.AcceptDialog
   Button: godot.Button
   CanvasLayer: godot.CanvasLayer
+  CollisionShape2D: godot.CollisionShape2D
+  ColorRect: godot.ColorRect
   Control: godot.Control
   HBoxContainer: godot.HBoxContainer
   Label: godot.Label
   LineEdit: godot.LineEdit
   MarginContainer: godot.MarginContainer
   Node: godot.Node
+  Sprite: godot.Sprite
   ScrollContainer: godot.ScrollContainer
   TextureRect: godot.TextureRect
   VBoxContainer: godot.VBoxContainer
