@@ -11,6 +11,7 @@ export type GNodes = {
   ScrollContainer: godot.ScrollContainer
   TextureRect: godot.TextureRect
   VBoxContainer: godot.VBoxContainer
+  CollisionShape2D: godot.CollisionShape2D
 }
 
 type GNodeProps<T> = { [key: `on_${ string }`]: Function } & { [P in keyof T]?: T[P] }

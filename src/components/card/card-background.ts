@@ -4,6 +4,7 @@ export class CardBackground extends godot.Panel {
   constructor(size: godot.Vector2) {
     super()
     this.rect_size = size
+    this.mouse_filter = 2
   }
 
   public _ready() {

@@ -7,6 +7,7 @@ export class CardHeader extends godot.Panel {
     super()
     this.title = title
     this.rect_min_size = size
+    this.mouse_filter = 2
   }
 
   public _ready() {
