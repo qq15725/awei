@@ -20,10 +20,10 @@ export class Card extends godot.Area2D {
     const size = vector2(90, 120)
     this.add_child(
       gnode('Control', {
-        margin_left: -32.0,
-        margin_top: -64.0,
-        margin_right: 32.0,
-        margin_bottom: 32.0,
+        margin_left: -45.0,
+        margin_top: -60.0,
+        margin_right: 45.0,
+        margin_bottom: 45.0,
         mouse_filter: 2,
       },
       [
