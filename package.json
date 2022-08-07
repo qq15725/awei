@@ -5,8 +5,10 @@
     "lint:fix": "eslint --fix ./src",
     "watch": "tsc -w -p .",
     "build": "tsc -p .",
-    "mac": "./bin/godot --path ./",
-    "win": ".\\bin\\godot.exe --path .\\"
+    "mac": "./bin/godot",
+    "mac:editor": "./bin/godot -e",
+    "win": ".\\bin\\godot.exe",
+    "win:editor": ".\\bin\\godot.exe -e"
   },
   "devDependencies": {
     "@qq15725/eslint-config": "^1.1.0",
