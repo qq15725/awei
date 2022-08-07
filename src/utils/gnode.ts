@@ -5,6 +5,7 @@ export type GNodes = {
   CollisionShape2D: godot.CollisionShape2D
   ColorRect: godot.ColorRect
   Control: godot.Control
+  Camera2D: godot.Camera2D
   HBoxContainer: godot.HBoxContainer
   Label: godot.Label
   LineEdit: godot.LineEdit
