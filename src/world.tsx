@@ -1,28 +1,21 @@
 import { Game } from './game'
-import { gnode, loadScene, vector2 } from './utils'
+import { gnode } from './utils'
+import { Farmer } from './components'
 
 export default class Root extends godot.Node2D {
   private camera: godot.Camera2D
   private isDrag = false
 
   _ready() {
-    // 工具类
     this.add_child(new Game())
-
-    this.create_card()
-
+    this.add_child(new Farmer())
     this.add_child(
       gnode('Button', {
         text: '新增卡牌',
-        on_pressed: () => this.create_card(),
+        on_pressed: () => this.add_child(new Farmer()),
       }),
     )
-    this.camera = gnode('Camera2D', {
-      position: vector2(0, 0),
-      current: true,
-      offset_v: 0.22,
-    })
-    this.add_child(this.camera)
+    this.camera = this.get_node('Camera') as godot.Camera2D
   }
 
   _unhandled_input(event: godot.InputEvent) {
@@ -52,11 +45,5 @@ export default class Root extends godot.Node2D {
       this.camera.zoom.x = godot.clamp(this.camera.zoom.x, 0.25, 4)
       this.camera.zoom.y = godot.clamp(this.camera.zoom.y, 0.25, 4)
     }
-  }
-
-  create_card() {
-    this.add_child(
-      loadScene('res://scenes/components/card.tscn').instance(),
-    )
   }
 }
