@@ -1,20 +1,9 @@
-import { loadScene, vector2 } from '../utils'
+import { vector2 } from './utils'
 
 export class Card extends godot.Area2D {
   public title = '标题'
   public grabbedOffset = vector2()
   public canGrab = false
-
-  constructor() {
-    super()
-    Card.tscn().instance().get_children().forEach((node: godot.Node2D) => {
-      this.add_child(node.duplicate())
-    })
-  }
-
-  public static tscn() {
-    return loadScene('res://scenes/components/card.tscn')
-  }
 
   public _ready() {
     (this.get_node('Control/Header/Title') as godot.Label).set_text(this.title)
@@ -34,3 +23,5 @@ export class Card extends godot.Area2D {
     }
   }
 }
+
+export default Card

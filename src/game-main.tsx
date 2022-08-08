@@ -2,15 +2,10 @@ import { gnode } from './utils'
 import { Game } from './game'
 import { MainMenu, MessageBox, NetworkManager } from './components'
 
-export default class Root extends godot.Node {
+export class GameMain extends godot.Node {
   _ready() {
-    // 工具类
     this.add_child(new Game())
-
-    // 网络管理
     this.add_child(new NetworkManager())
-
-    // UI
     this.add_child(
       gnode('CanvasLayer', { name: 'UI' }, [
         gnode('Control', {
@@ -25,9 +20,10 @@ export default class Root extends godot.Node {
         ]),
       ]),
     )
-
     if (godot.OS.has_feature('Server')) {
       new godot.NetworkedMultiplayerENet().create_server(3333)
     }
   }
 }
+
+export default GameMain

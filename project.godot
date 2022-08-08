@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="aweilands"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="res://text-scenes/game-world.tscn"
 config/icon="res://icon.png"
 boot_splash/image="res://assets/none.png"
 

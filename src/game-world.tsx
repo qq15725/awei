@@ -1,18 +1,18 @@
 import { Game } from './game'
 import { gnode } from './utils'
-import { Farmer } from './components'
+import { Farmer } from './farmer'
 
-export default class Root extends godot.Node2D {
+export class GameWorld extends godot.Node2D {
   private camera: godot.Camera2D
   private isDrag = false
 
   _ready() {
     this.add_child(new Game())
-    this.add_child(new Farmer())
+    this.add_child(Farmer.new())
     this.add_child(
       gnode('Button', {
         text: '新增卡牌',
-        on_pressed: () => this.add_child(new Farmer()),
+        on_pressed: () => this.add_child(Farmer.new()),
       }),
     )
     this.camera = this.get_node('Camera') as godot.Camera2D
@@ -47,3 +47,5 @@ export default class Root extends godot.Node2D {
     }
   }
 }
+
+export default GameWorld
