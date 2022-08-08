@@ -5,10 +5,6 @@ export class Card extends godot.Area2D {
   public grabbedOffset = vector2()
   public canGrab = false
 
-  constructor() {
-    super()
-  }
-
   public _ready() {
     this.setTitle(this.title)
   }

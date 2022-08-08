@@ -12,7 +12,7 @@ export class GameWorld extends godot.Node2D {
         text: '新增卡牌',
         on_pressed: () => {
           const farmer = Farmer.new()
-          farmer.position *= 1.1
+          farmer.position *= 100.1
           this.add_child(farmer)
         },
       }),

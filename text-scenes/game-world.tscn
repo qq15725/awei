@@ -1,13 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://dist/game-world.jsx" type="Script" id=1]
-[ext_resource path="res://dist/game-world-camera.jsx" type="Script" id=2]
+[ext_resource path="res://text-scenes/desktop.tscn" type="PackedScene" id=2]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="GameWorldCamera" type="Camera2D" parent="."]
-position = Vector2( 0, 0 )
-current = true
-offset_v = 0.22
-script = ExtResource( 2 )
+[node name="Desktop" instance=ExtResource( 2 ) parent="."]
