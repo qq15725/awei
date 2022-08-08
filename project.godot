@@ -10,9 +10,16 @@ config_version=4
 
 [application]
 
-config/name="awei"
+config/name="aweilands"
 run/main_scene="res://scenes/world.tscn"
 config/icon="res://icon.png"
+boot_splash/image="res://assets/none.png"
+
+[display]
+
+window/size/width=320
+window/size/height=180
+window/stretch/aspect="keep"
 
 [gui]
 
