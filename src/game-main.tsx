@@ -1,10 +1,8 @@
 import { gnode } from './utils'
-import { Game } from './game'
 import { MainMenu, MessageBox, NetworkManager } from './components'
 
 export class GameMain extends godot.Node {
   _ready() {
-    this.add_child(new Game())
     this.add_child(new NetworkManager())
     this.add_child(
       gnode('CanvasLayer', { name: 'UI' }, [

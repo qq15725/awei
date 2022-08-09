@@ -1,3 +1,6 @@
+import { gnode } from './utils'
+import { Farmer } from './farmer'
+
 export class Desktop extends godot.Area2D {
   public camera: godot.Camera2D
   public dragging = false
@@ -5,9 +8,37 @@ export class Desktop extends godot.Area2D {
 
   public _ready() {
     this.camera = this.get_node('Camera') as godot.Camera2D
+    const box = this.get_node('Box') as godot.Node2D
+    box.add_child(Farmer.new())
+    box.add_child(
+      gnode('Button', {
+        text: '新增卡牌',
+        on_pressed: () => {
+          const farmer = Farmer.new()
+          farmer.position *= 100.1
+          box.add_child(farmer)
+        },
+      }),
+    )
+  }
+
+  _input(event: godot.InputEvent) {
+    if (event instanceof godot.InputEventMouseButton) {
+      console.log('_input', event.is_pressed(), this.get_tree().is_input_handled())
+    }
+  }
+
+  _unhandled_input(event: godot.InputEvent) {
+    if (event instanceof godot.InputEventMouseButton) {
+      console.log('_unhandled_input', event.is_pressed(), this.get_tree().is_input_handled())
+    }
   }
 
   public _input_event(viewport: Object, event: godot.InputEvent) {
+    if (event instanceof godot.InputEventMouseButton) {
+      console.log('_input_event', event.is_pressed(), this.get_tree().is_input_handled())
+    }
+    if (this.get_tree().is_input_handled()) return
     if (event instanceof godot.InputEventMouseButton && event.button_index === godot.BUTTON_LEFT) {
       if (event.is_pressed()) {
         this.previousPosition = event.position

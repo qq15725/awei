@@ -14,11 +14,12 @@ export class Card extends godot.Area2D {
   }
 
   public _input_event(_viewport: Object, event: godot.InputEvent, _shape_idx: number) {
-    if (event instanceof godot.InputEventMouseButton) {
+    if (event instanceof godot.InputEventMouseButton && event.button_index === godot.BUTTON_LEFT) {
+      this.get_tree().set_input_as_handled()
       this.canGrab = event.pressed
       // @ts-expect-error vector2
       this.grabbedOffset = this.position - this.get_global_mouse_position()
-      this.get_tree().set_input_as_handled()
+      console.log('canGrab', this.canGrab)
     }
   }
 

@@ -1,4 +1,4 @@
-import { Game } from '../game'
+import { Global } from '../global'
 
 export class NetworkBase extends godot.Node {
   peer: godot.NetworkedMultiplayerENet
@@ -8,6 +8,6 @@ export class NetworkBase extends godot.Node {
   }
 
   message(text: string) {
-    Game.messageBox().push(text)
+    Global.singleton.messageBox().push(text)
   }
 }

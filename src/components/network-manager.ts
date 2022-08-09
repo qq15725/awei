@@ -1,4 +1,4 @@
-import { Game } from '../game'
+import { Global } from '../global'
 
 export class NetworkManager extends godot.Node {
   _ready() {
@@ -11,11 +11,11 @@ export class NetworkManager extends godot.Node {
   }
 
   onPlayerConnected(id: string) {
-    Game.messageBox().push(`玩家${ id }: 已连接`)
+    Global.singleton.messageBox().push(`玩家${ id }: 已连接`)
   }
 
   onPlayerDisconnected(id: string) {
-    Game.messageBox().push(`玩家${ id }: 已退出`)
+    Global.singleton.messageBox().push(`玩家${ id }: 已退出`)
   }
 
   onConnectedOk() {
