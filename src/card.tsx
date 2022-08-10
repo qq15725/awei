@@ -1,6 +1,6 @@
 import { vector2 } from './utils'
 
-export class Card extends godot.Area2D {
+export class Card extends godot.RigidBody2D {
   public grabbedOffset = vector2()
   public canGrab = false
 
@@ -18,6 +18,13 @@ export class Card extends godot.Area2D {
       this.position = this.get_global_mouse_position() + this.grabbedOffset
     }
   }
+
+  // public _area_entered(area: Card) {
+  //   if (area instanceof Card) {
+  //     const title = area.get_node('Control/Header/Title') as godot.Label
+  //     console.log(title.text)
+  //   }
+  // }
 }
 
 export default Card

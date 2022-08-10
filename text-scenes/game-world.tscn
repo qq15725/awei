@@ -14,6 +14,5 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 0, 0 )
 current = true
 offset_v = 0.22

@@ -29,6 +29,10 @@ window/stretch/aspect="keep"
 
 theme/custom_font="res://font.tres"
 
+[physics]
+
+2d/default_gravity=0
+
 [rendering]
 
 environment/default_environment="res://env.tres"
