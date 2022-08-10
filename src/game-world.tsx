@@ -22,22 +22,7 @@ export class GameWorld extends godot.Area2D {
     )
   }
 
-  _input(event: godot.InputEvent) {
-    if (event instanceof godot.InputEventMouseButton) {
-      console.log('_input', event.is_pressed(), this.get_tree().is_input_handled())
-    }
-  }
-
-  _unhandled_input(event: godot.InputEvent) {
-    if (event instanceof godot.InputEventMouseButton) {
-      console.log('_unhandled_input', event.is_pressed(), this.get_tree().is_input_handled())
-    }
-  }
-
   public _input_event(viewport: Object, event: godot.InputEvent) {
-    if (event instanceof godot.InputEventMouseButton) {
-      console.log('_input_event', event.is_pressed(), this.get_tree().is_input_handled())
-    }
     if (this.get_tree().is_input_handled()) return
     if (event instanceof godot.InputEventMouseButton && event.button_index === godot.BUTTON_LEFT) {
       if (event.is_pressed()) {
