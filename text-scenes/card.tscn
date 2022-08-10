@@ -50,6 +50,7 @@ custom_styles/panel = SubResource( 3 )
 [node name="Title" type="Label" parent="Control/Header"]
 margin_right = 114.0
 margin_bottom = 23.0
+text = "标题"
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
 [connection signal="gui_input" from="Control" to="." method="_control_gui_input"]

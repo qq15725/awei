@@ -1,17 +1,8 @@
 import { vector2 } from './utils'
 
 export class Card extends godot.Area2D {
-  public title = '标题'
   public grabbedOffset = vector2()
   public canGrab = false
-
-  public _ready() {
-    this.setTitle(this.title)
-  }
-
-  public setTitle(text: string) {
-    (this.get_node('Control/Header/Title') as godot.Label).set_text(text)
-  }
 
   public _control_gui_input(event: godot.InputEvent) {
     if (event instanceof godot.InputEventMouseButton && event.button_index === godot.BUTTON_LEFT) {
