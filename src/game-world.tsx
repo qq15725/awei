@@ -1,5 +1,5 @@
 import { gnode } from './utils'
-import { Farmer } from './farmer'
+import { Global } from './global'
 
 export class GameWorld extends godot.Area2D {
   public camera: godot.Camera2D
@@ -9,12 +9,12 @@ export class GameWorld extends godot.Area2D {
   public _ready() {
     this.camera = this.get_node('Camera') as godot.Camera2D
     const box = this.get_node('Box') as godot.Node2D
-    box.add_child(Farmer.new())
+    box.add_child(Global.singleton.newFarmer())
     box.add_child(
       gnode('Button', {
         text: '新增卡牌',
         on_pressed: () => {
-          const farmer = Farmer.new()
+          const farmer = Global.singleton.newFarmer()
           farmer.position *= 100.1
           box.add_child(farmer)
         },
