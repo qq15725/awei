@@ -1,29 +1,24 @@
 import { gnode } from './utils'
 import { Global } from './global'
 
-export class GameWorld extends godot.Area2D {
+export class GameWorld extends godot.Node2D {
   public camera: godot.Camera2D
   public dragging = false
   public previousPosition: godot.Vector2
 
   public _ready() {
-    this.camera = this.get_node('Camera') as godot.Camera2D
-    const box = this.get_node('Box') as godot.Node2D
-    box.add_child(Global.singleton.newFarmer())
-    box.add_child(
+    this.camera = this.get_node('desktop/camera') as godot.Camera2D
+    this.add_child(
       gnode('Button', {
         text: '新增卡牌',
         on_pressed: () => {
-          const farmer = Global.singleton.newFarmer()
-          farmer.position *= 100.1
-          box.add_child(farmer)
+          this.add_child(Global.singleton.newFarmer())
         },
       }),
     )
   }
 
-  public _input_event(viewport: Object, event: godot.InputEvent) {
-    if (this.get_tree().is_input_handled()) return
+  public _on_desktop_input_event(_: Object, event: godot.InputEvent) {
     if (event instanceof godot.InputEventMouseButton && event.button_index === godot.BUTTON_LEFT) {
       if (event.is_pressed()) {
         this.previousPosition = event.position

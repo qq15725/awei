@@ -2,5 +2,5 @@
 
 [ext_resource path="res://dist/game-main.jsx" type="Script" id=1]
 
-[node name="GameMain" type="Node"]
+[node name="game_main" type="Node"]
 script = ExtResource( 1 )
