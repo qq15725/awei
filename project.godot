@@ -21,12 +21,14 @@ Global="*res://dist/global.jsx"
 
 [display]
 
-window/size/width=640
-window/size/height=360
+window/size/width=1280
+window/size/height=720
+window/dpi/allow_hidpi=true
 window/stretch/aspect="keep"
 
 [gui]
 
+theme/use_hidpi=true
 theme/custom_font="res://font.tres"
 
 [physics]
@@ -35,4 +37,5 @@ theme/custom_font="res://font.tres"
 
 [rendering]
 
+quality/filters/use_nearest_mipmap_filter=true
 environment/default_environment="res://env.tres"
