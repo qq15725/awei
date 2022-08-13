@@ -4,10 +4,20 @@ export class Card extends godot.RigidBody2D {
   public dragging = false
   public movement = vector2()
   public area?: godot.Area2D
-  public _position?: number
+  public prev?: Card
+  public next?: Card
 
   _ready() {
     this.area = this.get_node('area') as godot.Area2D
+  }
+
+  public _process() {
+    if (godot.Input.is_mouse_button_pressed(godot.BUTTON_LEFT) && this.dragging) {
+      this.position = this.get_global_mouse_position() + this.movement
+    } else if (this.prev) {
+      // @ts-expect-error vector2
+      this.position = vector2(this.prev.position.x, this.prev.position.y + 26)
+    }
   }
 
   public _on_view_gui_input(event: godot.InputEvent) {
@@ -19,18 +29,30 @@ export class Card extends godot.RigidBody2D {
     }
   }
 
-  public _process() {
-    if (godot.Input.is_mouse_button_pressed(godot.BUTTON_LEFT) && this.dragging) {
-      this.position = this.get_global_mouse_position() + this.movement
-    } else if (this._position) {
-      this.position = this._position
+  public checkAncestors(card: Card, ancestor?: Card) {
+    return !ancestor || (
+      card.get_rid().get_id() !== ancestor?.get_rid().get_id()
+      && this.checkAncestors(card, ancestor?.prev)
+    )
+  }
+
+  public _on_area_body_entered(card: Card) {
+    const id = this.get_rid().get_id()
+    const cardId = card.get_rid().get_id()
+    if (this.dragging && cardId !== id && !card.next && !this.prev && this.checkAncestors(this, card)) {
+      card.next = this
+      this.prev = card
+      this.z_index = card.z_index + 1
     }
   }
 
-  public _on_area_body_entered(body: godot.RigidBody2D) {
-    if (body !== this && this.dragging) {
-      const position = body.get_position() as any
-      this._position = vector2(position.x, position.y + 20)
+  public _on_area_body_exited(card: Card) {
+    const id = this.prev?.get_rid().get_id()
+    const cardId = card.get_rid().get_id()
+    if (this.dragging && cardId === id) {
+      this.prev.next = undefined
+      this.prev = undefined
+      this.z_index = 0
     }
   }
 }
