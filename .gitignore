@@ -1,19 +1,6 @@
 .DS_Store
-.env
-node_modules/
-dist/
-bige-pptx-server/
-
-# Lock
-package-lock.json
-pnpm-lock.yaml
 
 # IDE user config
 .vscode/
 .idea/
 .vs/
-
-# Logs
-yarn-error.log
-npm-debug.log
-lerna-debug.log

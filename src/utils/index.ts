@@ -1,5 +1,0 @@
-export * from './color'
-export * from './decorators'
-export * from './gnode'
-export * from './scene'
-export * from './vector'

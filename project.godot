@@ -8,16 +8,26 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://tscn/card/card.gd"
+} ]
+_global_script_class_icons={
+"Card": ""
+}
+
 [application]
 
 config/name="aweilands"
-run/main_scene="res://text-scenes/game-world.tscn"
+run/main_scene="res://tscn/world/world.tscn"
 boot_splash/image="res://assets/none.png"
 config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://dist/global.jsx"
+Global="*res://gdscripts/global.gd"
 
 [display]
 
@@ -29,7 +39,7 @@ window/stretch/aspect="keep"
 [gui]
 
 theme/use_hidpi=true
-theme/custom_font="res://font.tres"
+theme/custom_font="res://tres/font.tres"
 
 [physics]
 
@@ -38,4 +48,4 @@ theme/custom_font="res://font.tres"
 [rendering]
 
 quality/filters/use_nearest_mipmap_filter=true
-environment/default_environment="res://env.tres"
+environment/default_environment="res://tres/env.tres"
