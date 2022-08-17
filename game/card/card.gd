@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var draggable = load('res://class/draggable.gd').new({ "use_global": true })
+var draggable = load('res://shared/draggable.gd').new({ "use_global": true })
 
 # 桌面输入
 func _on_View_gui_input(event):

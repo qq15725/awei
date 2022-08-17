@@ -1,6 +1,6 @@
 extends Camera2D
 
-var draggable = load('res://class/draggable.gd').new({ "multiplier": -1 })
+var draggable = load('res://shared/draggable.gd').new({ "multiplier": -1 })
 
 func _unhandled_input(event):
 	# 处理拖拽
