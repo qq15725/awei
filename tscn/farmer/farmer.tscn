@@ -5,3 +5,6 @@
 
 [node name="Farmer" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Title" parent="View/Warpper/Header" index="0"]
+text = "农民"

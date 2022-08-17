@@ -13,7 +13,7 @@ collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop"]
+[node name="Shape" type="CollisionShape2D" parent="Desktop"]
 visible = false
 shape = SubResource( 1 )
 

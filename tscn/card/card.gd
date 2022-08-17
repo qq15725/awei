@@ -1,11 +1,12 @@
 extends RigidBody2D
 
-class_name Card
-
+# 拖拽中
 var dragging = false
 
+# 拖拽移动的距离
 var drag_movement: Vector2
 
+# 桌面输入
 func _on_View_gui_input(event):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		dragging = event.pressed
@@ -19,13 +20,13 @@ func _on_View_gui_input(event):
 	  collision_mask = 1
 	pass
 
+# 刚体进入
 func _on_Area_body_entered(body):
   print(body)
 
+# 刚体退出
 func _on_Area_body_exited(body):
   print(body)
 
 func _process(_delta):
-  if dragging:
-	  global_position = get_global_mouse_position() + drag_movement
-  pass
+  if dragging: global_position = get_global_mouse_position() + drag_movement
