@@ -1,8 +1,11 @@
 extends Reference
 
-# 使用全局鼠标位置
-# 移动偏移值的乘数
-var options = { "use_global": false, "multiplier": 1 }
+var options = {
+	# 使用全局鼠标位置
+	"use_global": false,
+	# 移动偏移值的乘数
+	"multiplier": 1,
+}
 
 # 拖拽中
 var dragging = false
