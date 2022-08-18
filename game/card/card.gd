@@ -1,27 +1,31 @@
-extends RigidBody2D
+class_name Card
 
-var draggable = load('res://shared/draggable.gd').new({ "use_global": true })
+extends KinematicBody2D
 
-# 桌面输入
-func _on_View_gui_input(event):
-	# 处理拖拽
-	draggable.input(self, event)
+var draggable = Draggable.new(self, { "global": true })
+var stackable = Stackable.new(self)
 
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
-		if draggable.dragging:
-			collision_layer = 0
-			collision_mask = 0
-		else:
-			collision_layer = 1
-			collision_mask = 1
+func _on_View_gui_input(event: InputEvent) -> void:
+	draggable.input(event)
 
-func _process(_delta):
-	draggable.drag(self)
+	# if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+	# 	if draggable.dragging:
+	# 		collision_layer = 0
+	# 		collision_mask = 0
+	# 	else:
+	# 		collision_layer = 1
+	# 		collision_mask = 1
 
-# 刚体进入
-func _on_Area_body_entered(body):
-  print(body)
+func _process(_delta: float) -> void:
+	draggable.drag()
 
-# 刚体退出
-func _on_Area_body_exited(body):
-  print(body)
+	if !draggable.dragging && stackable.prev:
+		position = Vector2(stackable.prev.position.x, stackable.prev.position.y + 26)
+
+func _on_Area_body_entered(card: Card):
+	if draggable.dragging:
+		stackable.stack(card)
+
+func _on_Area_body_exited(card: Card):
+	if draggable.dragging:
+		stackable.unstack(card)

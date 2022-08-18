@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://game/card/card.gd"
+}, {
+"base": "Reference",
+"class": "Draggable",
+"language": "GDScript",
+"path": "res://shared/draggable.gd"
+}, {
+"base": "Reference",
+"class": "Stackable",
+"language": "GDScript",
+"path": "res://shared/stackable.gd"
+} ]
+_global_script_class_icons={
+"Card": "",
+"Draggable": "",
+"Stackable": ""
+}
+
 [application]
 
 config/name="aweilands"

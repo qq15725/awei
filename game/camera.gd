@@ -1,10 +1,9 @@
 extends Camera2D
 
-var draggable = load('res://shared/draggable.gd').new({ "multiplier": -1 })
+var draggable = Draggable.new(self, { "multiplier": -1 })
 
-func _unhandled_input(event):
-	# 处理拖拽
-	draggable.input(self, event)
+func _unhandled_input(event: InputEvent) -> void:
+	draggable.input(event)
 
 	if event is InputEventMouseButton:
 		# 滚轮按下
@@ -19,4 +18,4 @@ func _unhandled_input(event):
 			zoom.y = clamp(zoom.y, 0.25, 4)
 
 func _process(_delta):
-	draggable.drag(self)
+	draggable.drag()
