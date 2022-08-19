@@ -46,7 +46,8 @@ Global="*res://autoload/global.gd"
 window/size/width=1280
 window/size/height=720
 window/dpi/allow_hidpi=true
-window/stretch/aspect="keep"
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
 
 [gui]
 
@@ -60,4 +61,4 @@ theme/custom_font="res://fonts/default_font.tres"
 [rendering]
 
 quality/filters/use_nearest_mipmap_filter=true
-environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_clear_color=Color( 0.619608, 0.784314, 0.619608, 1 )

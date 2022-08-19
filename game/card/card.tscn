@@ -1,34 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://game/card/card.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://game/card/view.tres" type="StyleBox" id=3]
+[ext_resource path="res://game/card/header.tres" type="StyleBox" id=4]
+[ext_resource path="res://game/card/image.tres" type="StyleBox" id=5]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 60, 72.5 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 60, 72.5 )
-
-[sub_resource type="StyleBoxFlat" id=6]
-content_margin_left = 3.0
-content_margin_right = 3.0
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color( 0.984314, 0.94902, 0.878431, 1 )
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0, 0, 0, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.96, 0.89, 0.68, 1 )
-border_width_bottom = 3
-border_color = Color( 0, 0, 0, 1 )
 
 [node name="Card" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -50,22 +32,22 @@ rect_min_size = Vector2( 120, 145 )
 mouse_default_cursor_shape = 6
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = ExtResource( 3 )
 
 [node name="Warpper" type="VBoxContainer" parent="View"]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 117.0
-margin_bottom = 142.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 116.0
+margin_bottom = 141.0
 mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="Header" type="PanelContainer" parent="View/Warpper"]
-margin_right = 114.0
-margin_bottom = 26.0
+margin_right = 112.0
+margin_bottom = 23.0
 mouse_filter = 2
-size_flags_vertical = 0
-custom_styles/panel = SubResource( 3 )
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 4 )
 
 [node name="Title" type="Label" parent="View/Warpper/Header"]
 margin_right = 32.0
@@ -75,16 +57,35 @@ size_flags_vertical = 0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "标题"
 
+[node name="Border" type="ColorRect" parent="View/Warpper"]
+margin_top = 23.0
+margin_right = 112.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 2 )
+color = Color( 0, 0, 0, 1 )
+
 [node name="Body" type="Control" parent="View/Warpper"]
-margin_top = 26.0
-margin_right = 114.0
-margin_bottom = 139.0
-rect_min_size = Vector2( 100, 100 )
+margin_top = 25.0
+margin_right = 112.0
+margin_bottom = 137.0
 mouse_filter = 2
 size_flags_vertical = 3
 
-[node name="Image" type="Sprite" parent="View/Warpper/Body"]
-position = Vector2( 58, 55 )
+[node name="Warpper" type="PanelContainer" parent="View/Warpper/Body"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 5 )
+
+[node name="Image" type="Sprite" parent="View/Warpper/Body/Warpper"]
+position = Vector2( 40, 40 )
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
