@@ -47,6 +47,7 @@ shape = SubResource( 1 )
 margin_right = 120.0
 margin_bottom = 145.0
 rect_min_size = Vector2( 120, 145 )
+mouse_default_cursor_shape = 6
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 6 )

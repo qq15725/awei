@@ -9,34 +9,40 @@ var next: Node2D
 func _init(_node: Node2D) -> void:
 	node = _node
 
-func stack(_node: Node2D):
+func stack(_node: Node2D) -> bool:
 	if _check(_node):
 		prev = _node
 		if prev.stackable: 
 			prev.stackable.next = node
-		node.z_index = prev.z_index + 1
-		_update_next_z_index()
+		_update_z_index(true)
+		return true
+	return false
 
-func unstack(_node: Node2D):
-	if prev && _node.get_instance_id() == prev.get_instance_id():
+func unstack(_node: Node2D) -> bool:
+	if prev && _node == prev:
 		if prev.stackable:
 			prev.stackable.next = null
 		prev = null
-		node.z_index = 0
-		_update_next_z_index()
+		_update_z_index(false)
+		return true
+	return false
 
 func _check(_node: Node2D) -> bool:
-	var instance_id = node.get_instance_id()
-	return instance_id != _node.get_instance_id() && !prev && (!_node.stackable || (!_node.stackable.next && _node.stackable._check_prev(instance_id)))
+	return node != _node && !prev && (!_node.stackable || (!_node.stackable.next && _node.stackable._check_prev(node)))
 
-func _check_prev(instance_id: int) -> bool:
+func _check_prev(_node: Node2D) -> bool:
 	if prev:
-		if instance_id == prev.get_instance_id(): return false
-		if prev.stackable: return prev.stackable._check_prev(instance_id)
+		if _node == prev: return false
+		if prev.stackable: return prev.stackable._check_prev(_node)
 	return true
 
-func _update_next_z_index():
+func _update_z_index(stack := true, isNext := false) -> void:
+	if !isNext:
+		if stack:
+			node.z_index = prev.z_index + 1
+		else:
+			node.z_index = 0
 	if next:
 		next.z_index = node.z_index + 1
 		if next.stackable:
-			next.stackable._update_next_z_index()
+			next.stackable._update_z_index(stack, true)

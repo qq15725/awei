@@ -27,9 +27,13 @@ func _init(_node: Node2D, _options := {}) -> void:
 	node = _node
 	options.merge(_options, true)
 
+# 是鼠标按钮事件
+func is_mouse_button_event(event: InputEvent) -> bool:
+	return event is InputEventMouseButton && event.button_index == BUTTON_LEFT
+
 # 设置拖拽中
 func input(event: InputEvent) -> void:
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+	if is_mouse_button_event(event):
 		dragging = event.is_pressed()
 		if dragging:
 			_set_mouse_position()
