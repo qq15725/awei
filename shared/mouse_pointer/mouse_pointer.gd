@@ -1,7 +1,10 @@
 extends Area2D
 
-var overlaps := []
+# 聚焦节点
 var focused: Node
+
+# 和鼠标重叠的节点
+var overlaps := []
 
 func _ready():
 	 # warning-ignore:return_value_discarded

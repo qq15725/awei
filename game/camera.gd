@@ -17,5 +17,5 @@ func _unhandled_input(event: InputEvent) -> void:
 			zoom.x = clamp(zoom.x, 0.25, 4)
 			zoom.y = clamp(zoom.y, 0.25, 4)
 
-func _process(_delta):
+func _process(_delta) -> void:
 	draggable.drag()

@@ -19,10 +19,10 @@ func _on_View_gui_input(event: InputEvent) -> void:
 		else:
 			draggable.input(event)
 
-func _on_Area_body_entered(card: Card):
+func _on_Area_body_entered(card: Card) -> void:
 	if draggable.dragging:
 		stackable.stack(card)
 
-func _on_Area_body_exited(card: Card):
+func _on_Area_body_exited(card: Card) -> void:
 	if draggable.dragging:
 		stackable.unstack(card)
