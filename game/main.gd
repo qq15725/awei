@@ -12,4 +12,3 @@ func _ready():
 	add_child_to_random_position(load('res://game/farmer/farmer.tscn').instance())
 	add_child_to_random_position(load('res://game/berry_bushes/berry_bushes.tscn').instance())
 	add_child_to_random_position(load('res://game/berry/berry.tscn').instance())
-	add_child_to_random_position(load('res://game/farmer/farmer.tscn').instance())

@@ -9,37 +9,51 @@ var next: Node2D
 func _init(_node: Node2D) -> void:
 	node = _node
 
-func get_root():
+# 获取堆叠的根节点
+func get_root() -> Node2D:
 	if prev && prev.stackable:
 		return prev.stackable.get_root()
 	return node
 
-func get_prev_deep(deep := 0):
-	if prev && prev.stackable:
-		return prev.stackable.get_prev_deep(deep + 1)
-	return deep
-
-func stack(_node: Node2D) -> bool:
-	if _check(_node):
-		prev = _node
-		if prev.stackable: 
-			prev.stackable.next = node
-		return true
-	return false
-
-func unstack() -> bool:
+# 获取上级的所有节点
+func get_prev_nodes() -> Array:
+	var nodes := []
 	if prev:
 		if prev.stackable:
-			prev.stackable.next = null
-		prev = null
-		return true
-	return false
+			nodes.append_array(prev.stackable.get_prev_nodes())
+		nodes.append(prev)
+	return nodes
 
-func _check(_node: Node2D) -> bool:
-	return node != _node && !prev && (!_node.stackable || (!_node.stackable.next && _node.stackable._check_prev(node)))
+# 获取下级的所有节点
+func get_next_nodes() -> Array:
+	var nodes := []
+	if next:
+		if next.stackable:
+			nodes.append_array(next.stackable.get_next_nodes())
+		nodes.append(next)
+	return nodes
 
-func _check_prev(_node: Node2D) -> bool:
-	if prev:
-		if _node == prev: return false
-		if prev.stackable: return prev.stackable._check_prev(_node)
-	return true
+# 获取整个堆叠树
+func get_tree() -> Array:
+	var nodes := []
+	nodes.append_array(get_prev_nodes())
+	nodes.append(node)
+	nodes.append_array(get_next_nodes())
+	return nodes
+
+# 堆叠到某节点
+func stack(parent: Node2D) -> void:
+	if node == parent: return
+	if prev == parent: return
+	if prev: unstack()
+	if parent.stackable:
+		for child in parent.stackable.get_tree():
+			if node == child: return
+	prev = parent
+	if prev.stackable: 
+		prev.stackable.next = node	
+
+# 解除堆叠
+func unstack() -> void:
+	if prev && prev.stackable: prev.stackable.next = null
+	prev = null

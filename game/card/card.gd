@@ -9,11 +9,15 @@ enum CardState {
 }
 
 var state : int = CardState.NONE
-var draggable = Draggable.new(self, { "global": true })
-var stackable = Stackable.new(self)
+var draggable := Draggable.new(self, { "global": true })
+var stackable := Stackable.new(self)
+var compositions := [
+	{ "required": ["Farmer", "BerryBushes"] }
+]
 
-onready var progress_bar = $ProgressBar
-onready var area = $Area as Area2D
+onready var progress_bar := $ProgressBar
+onready var area := $Area
+onready var main := get_node("/root/Main")
 
 # 跟随速度
 const FOLLOW_SPEED = 8.0
@@ -21,44 +25,61 @@ const FOLLOW_SPEED = 8.0
 func _input(event: InputEvent) -> void:
 	if state == CardState.DRAGGING && draggable.is_dragging(event, false):
 		draggable.end()
-		_dragged()
+		_dragend()
 
 func _process(delta: float) -> void:
 	draggable.drag()
-
 	if state != CardState.DRAGGING && stackable.prev:
 		var newPosition = Vector2(stackable.prev.position.x, stackable.prev.position.y + 26)
 		position = position.linear_interpolate(newPosition, delta * FOLLOW_SPEED)
 
+# 控件事件
 func _on_View_gui_input(event: InputEvent) -> void:
 	if draggable.is_dragging(event, true):
-		var main = get_node("/root/Main")
-		if main.mouse_pointer.focused && main.mouse_pointer.focused != self:
+		if main\
+			&& main.mouse_pointer\
+			&& main.mouse_pointer.focused\
+			&& main.mouse_pointer.focused != self:
 			main.mouse_pointer.focused._on_View_gui_input(event)
 		else:
 			draggable.start()
 			state = CardState.DRAGGING
-
-func _dragged():
+# 拖拽结束
+func _dragend():
 	state = CardState.NONE
-	var cards = []
-	for card in area.get_overlapping_bodies():
-		if card == self: continue
-		cards.append(card)
-	cards.sort_custom(Sorter, "sort_ascending")
-	if !cards.empty():
-		if stackable.stack(cards.back()):
-			check_composition(true)
+
+	var overlaps := []
+	for body in area.get_overlapping_bodies():
+		if body != self: overlaps.append(body)
+	overlaps.sort_custom(Sorter, "sort_ascending")
+
+	if !overlaps.empty():
+		stackable.stack(overlaps.back())
 	else:
-		check_composition(false)
 		stackable.unstack()
 
-func check_composition(stack: bool):
-	if stack:
+	_composition()
+
+# 组合
+func _composition():
+	var tree = stackable.get_tree()
+	var use_composition = null
+	for composition in compositions:
+		var can_composition = true
+		if composition.required.size() != tree.size():
+			can_composition = false
+		else:
+			for node in tree:
+				if !composition.required.has(node.name):
+					can_composition = false
+					continue
+		if can_composition:
+			use_composition = composition
+			continue
+	if use_composition:
 		stackable.get_root().progress_bar.show()
-	elif stackable.get_prev_deep() == 1:
+	else:
 		stackable.get_root().progress_bar.hide()
-	pass
 
 class Sorter:
 	static func sort_ascending(a: Node2D, b: Node2D) -> bool:
