@@ -31,5 +31,5 @@ func _discover_focus():
 		focused = overlaps.back()
 
 class Sorter:
-	static func sort_ascending(a: Node, b: Node) -> bool:
-		return a.z_index < b.z_index
+	static func sort_ascending(a: Node2D, b: Node2D) -> bool:
+		return a.global_position.y < b.global_position.y

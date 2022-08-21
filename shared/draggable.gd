@@ -27,17 +27,21 @@ func _init(_node: Node2D, _options := {}) -> void:
 	node = _node
 	options.merge(_options, true)
 
-# 是鼠标按钮事件
-func is_mouse_button_event(event: InputEvent) -> bool:
-	return event is InputEventMouseButton && event.button_index == BUTTON_LEFT
+func is_dragging(event: InputEvent, is_pressed := true) -> bool:
+	return event is InputEventMouseButton && event.button_index == BUTTON_LEFT && is_pressed == event.is_pressed()
 
-# 设置拖拽中
-func input(event: InputEvent) -> void:
-	if is_mouse_button_event(event):
-		dragging = event.is_pressed()
-		if dragging:
-			_set_mouse_position()
-			_set_previous_mouse_position()
+func input(event: InputEvent) -> bool:
+	if is_dragging(event, true):
+		start()
+	elif is_dragging(event, false):
+		end()
+	return dragging
+
+func start():
+	dragging = true
+	_set_mouse_position()
+	_set_previous_mouse_position()
+	return false
 
 # 拖拽节点
 func drag() -> void:
@@ -45,6 +49,9 @@ func drag() -> void:
 		_set_mouse_position()
 		_set_node_position()
 		_set_previous_mouse_position()
+
+func end():
+	dragging = false
 
 # 设置上一个鼠标位置
 func _set_previous_mouse_position() -> void:

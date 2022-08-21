@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/card/card.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -11,6 +11,22 @@ extents = Vector2( 60, 72.5 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 60, 72.5 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.25098, 0.243137, 0.239216, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
 
 [node name="Card" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -88,6 +104,15 @@ position = Vector2( 40, 40 )
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 
-[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
-[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+margin_top = -16.0
+margin_right = 120.0
+margin_bottom = -2.0
+rect_min_size = Vector2( 120, 12 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
+value = 50.0
+percent_visible = false
+
 [connection signal="gui_input" from="View" to="." method="_on_View_gui_input"]
