@@ -112,7 +112,9 @@ margin_bottom = -2.0
 rect_min_size = Vector2( 120, 12 )
 custom_styles/fg = SubResource( 6 )
 custom_styles/bg = SubResource( 7 )
-value = 50.0
 percent_visible = false
 
+[node name="ProgressBarTimer" type="Timer" parent="ProgressBar"]
+
 [connection signal="gui_input" from="View" to="." method="_on_View_gui_input"]
+[connection signal="timeout" from="ProgressBar/ProgressBarTimer" to="." method="_on_ProgressBarTimer_timeout"]

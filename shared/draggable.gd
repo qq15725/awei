@@ -15,14 +15,11 @@ var options := {
 
 # 拖拽中
 var dragging := false
-
 # 鼠标位置
 var mouse_position: Vector2
-
 # 上一个鼠标位置
 var previous_mouse_position: Vector2
 
-# 初始化
 func _init(_node: Node2D, _options := {}) -> void:
 	node = _node
 	options.merge(_options, true)

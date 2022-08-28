@@ -25,10 +25,16 @@ func _on_MousePointer_body_exited(body: Node) -> void:
 	_discover_focus()
 
 func _discover_focus():
+	var oldFocused = focused
 	if overlaps.empty():
 		focused = null
 	else:
 		focused = overlaps.back()
+	if oldFocused != focused:
+		if oldFocused && oldFocused.has_method("_on_MousePointer_unfocused"):
+			oldFocused._on_MousePointer_unfocused()
+		if focused && focused.has_method("_on_MousePointer_focused"):
+			focused._on_MousePointer_focused()
 
 class Sorter:
 	static func sort_ascending(a: Node2D, b: Node2D) -> bool:
